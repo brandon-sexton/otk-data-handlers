@@ -1,4 +1,4 @@
-import {SatCat} from '../src/satcat';
+import {SatCat} from '../src/sat-cat';
 
 describe('SatCat', () => {
   const satCatPath = '../data/satcat.json';
