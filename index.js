@@ -1,1 +1,1 @@
-// add exports here to make them available to other files
+export {SatCat} from './src/sat-cat';
