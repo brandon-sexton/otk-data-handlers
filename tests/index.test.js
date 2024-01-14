@@ -79,4 +79,10 @@ describe('SatCat', () => {
       expect(filtered[1].SATNAME).toBe('FENGYUN 2C DEB');
     });
   });
+
+  test('filterByInclinationRange', () => {
+    const satcat = SatCat.fromJSON(satCatPath);
+    const filtered = satcat.filterByInclinationRange(0, 10);
+    expect(filtered.length).toBe(2908);
+  });
 });

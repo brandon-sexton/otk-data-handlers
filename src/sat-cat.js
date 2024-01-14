@@ -1,17 +1,15 @@
 /**
- * Represents a SatCat.
+ * @class SatCat
+ * @description Represents a SatCat.
  */
 export class SatCat extends Array {
   /**
-   * Constructs a SatCatHandler object.
+   * @constructor
+   * @description Constructs a SatCatHandler object.
    * @param {Array<Object>} satCatData - The SatCat data.
+   * @private
    */
   constructor(satCatData) {
-    /**
-     * The SatCat data.
-     * @type {Array<Object>}
-     * @private
-     */
     super();
     for (let i=0; i<satCatData.length; i++) {
       this.push(satCatData[i]);
@@ -19,7 +17,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Loads the SatCat data from a local file.
+   * @method fromJSON
+   * @description Loads the SatCat data from a local file.
    * @param {string} pathToSatCatFile - The path to the SatCat file.
    * @return {SatCat} The SatCat data as a handler object.
    */
@@ -29,7 +28,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Loads the SatCat data from a URL.
+   * @method fromURL
+   * @description Loads the SatCat data from a URL.
    * @param {string} url - The URL to the SatCat data.
    * @return {SatCat} The SatCat data as a handler object.
    * @example
@@ -43,7 +43,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat data by object types.
+   * @method filterByTypes
+   * @description Filters the SatCat data by object types.
    * @param {Array<string>} objectTypes - The object types to filter by.
    * @return {SatCat} The filtered SatCat data.
    * @example
@@ -61,7 +62,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat by name patterns
+   * @method filterByNamePattern
+   * @description Filters the SatCat by name patterns
    * @param {string} pattern - The pattern to filter by.
    * @return {SatCat} The filtered SatCat data.
    * @example
@@ -80,7 +82,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat by country codes.
+   * @method filterByCountryCodes
+   * @description Filters the SatCat by country codes.
    * @param {Array<string>} countryCodes - The country codes to filter by.
    * @return {SatCat} The filtered SatCat data.
    * @example
@@ -92,7 +95,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat for objects that are still on orbit.
+   * @method filterByStillOnOrbit
+   * @description Filters the SatCat for objects that are still on orbit.
    * @return {SatCat} The filtered SatCat data.
    * @example
    * // Returns all satellites that are still on orbit.
@@ -103,7 +107,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat for objects that launched in a given year.
+   * @method filterByLaunchYears
+   * @description Filters the SatCat for objects that launched in a given year.
    * @param {Array<number>} years - The years to filter by.
    * @return {SatCat} The filtered SatCat data.
    * @example
@@ -115,7 +120,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat for objects that launched in a given year range.
+   * @method filterByLaunchYearRange
+   * @description Filters the SatCat for objects that launched in a year range.
    * @param {number} startYear - The start year to filter by.
    * @param {number} endYear - The end year to filter by.
    * @return {SatCat} The filtered SatCat data.
@@ -131,8 +137,9 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat for objects that have a perigee less than or equal to
-   * a given value.
+   * @method filterByMaxPerigee
+   * @description Filters the SatCat for objects that have a perigee less than
+   * or equal to a given value.
    * @param {number} maxPerigee - The maximum perigee to filter by.
    * @return {SatCat} The filtered SatCat data.
    * @example
@@ -147,8 +154,9 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat for objects that have an apogee greater than or equal to
-   * a given value.
+   * @method filterByMinApogee
+   * @description Filters the SatCat for objects that have an apogee greater
+   * than or equal to a given value.
    * @param {number} minApogee - The minimum apogee to filter by.
    * @return {SatCat} The filtered SatCat data.
    * @example
@@ -163,7 +171,8 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat for objects with a given NORAD ID.
+   * @method filterByNoradIds
+   * @description Filters the SatCat for objects with a given NORAD ID.
    * @param {Array<number>} noradIds - The NORAD IDs to filter by.
    * @return {SatCat} The filtered SatCat data.
    */
@@ -172,7 +181,9 @@ export class SatCat extends Array {
   }
 
   /**
-   * Filters the SatCat for objects with a NORAD ID that matches a pattern.
+   * @method filterByNoradIdPattern
+   * @description Filters the SatCat for objects with a NORAD ID that matches
+   * a pattern.
    * @param {string} pattern - The pattern to filter by.
    * @return {SatCat} The filtered SatCat data.
    * @example
@@ -185,5 +196,23 @@ export class SatCat extends Array {
   filterByNoradIdPattern(pattern) {
     const regex = new RegExp(pattern, 'i');
     return this.filter((sat) => regex.test(sat.NORAD_CAT_ID));
+  }
+
+  /**
+   * @method filterByInclinationRange
+   * @description Filters the SatCat for objects with an inclination between
+   * a given range.
+   * @param {number} minInclination - The minimum inclination to filter by.
+   * @param {number} maxInclination - The maximum inclination to filter by.
+   * @return {SatCat} The filtered SatCat data.
+   * @example
+   * // Returns all satellites with an inclination between 50 and 60 degrees.
+   * const sats = handler.filterByInclinationRange(50, 60);
+   */
+  filterByInclinationRange(minInclination, maxInclination) {
+    return this.filter((sat) => {
+      const inclination = Number(sat.INCLINATION);
+      return inclination >= minInclination && inclination <= maxInclination;
+    });
   }
 };
